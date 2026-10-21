@@ -114,21 +114,72 @@ def display_program_info():  # displays program's information to the user
         print("\n*** Program Information ***\n")
 
         print("Program Name: Wentworth Events Board Casino Assistant Tool (WEB-CAT)")
-        print("Program Version: 1.0.1")
+        print("Program Version: 1.0.2")
         print("Program Author: Joe Machado")
-        print("Program Contribuiters: Ezra Doty, River Smith, Enzo Evola")
+        print("Program Contribuiters: Enly Moronta, Ezra Doty, River Smith, Enzo Evola")
         print("Program Language: Python")
         print("Program License: Wentworth Events Board (WEB)/Internal Use Only")
         print("_____________________________________________\n\n")
 
-def chip_exchanger():  # chip exchanger function (currently under development)
+def chip_exchanger(current_points):  # chip exchanger function (currently under development)
     # allows the user to exchange lower chip values (white, red, blue & green) for higher chip values (black, orange, & yellow)
     # for example: if the user has 10 green chips (100pts each) they can exchange them for 1 yellow chip (1000pts)
 
+    exchange_points = 0     # variable that will hold onto the total points that the player has as well as what the calculations will be based off of for the chip exchanger
+    updated_points = 0      # used in calculations
+
+    num_yellow_chips = 0       # variable that will hold onto the total number of yellow chips that the player will get after the exchange
+    num_orange_chips = 0       # variable that will hold onto the total number of orange chips that the player will get after the exchange
+    num_black_chips = 0        # variable that will hold onto the total number of black chips that the player will get after the exchange
+    num_green_chips = 0        # variable that will hold onto the total number of green chips that the player will get after the exchange
+    num_blue_chips = 0         # variable that will hold onto the total number of blue chips that the player will get after the exchange
+    num_red_chips = 0          # variable that will hold onto the total number of red chips that the player will get after the exchange
+    num_white_chips = 0        # variable that will hold onto the total number of white chips that the player will get after the exchange
+
     print("\n*** Chip Exchanger ***\n")
-    print("This feature is currently under development and will be available in a future update.")
-    print("Please check back later for updates on this feature!")
-    print("_____________________________________________\n\n")
+
+    print("Would you like to use the previous value stored in the program for the player's current points or use a new value? (1 for previous value, 2 for new value)")
+    print(f"Current User's Stored Points Value: {current_points} pts")
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        # use previous value
+        print("\nUsing previous value stored in the program for the player's current points...\n")
+        exchange_points = current_points
+    elif choice == 2:
+        # use new value
+        print("\nRunning the Chips to Points & Tickets Calculator to get a new value for the player's current points...\n")
+        exchange_points, _ = chips_to_tix()  # calls the chips_to_tix function to get a new value for the player's current points and tickets (the tickets value is not needed for the chip exchanger so it is ignored with the underscore)
+    else:
+        print("Invalid choice. Exiting...Please try again.")
+
+    # calculations/exchange logic for the chip exchanger 
+    print(f"\nCalculating the most effective chip exchange for {exchange_points} points...\n")
+    print("NOTE: The program will always try to give the player the highest chip values possible (yellow, orange, black) before giving them lower chip values (green, blue, red, white)\n")
+    print("(A Custom Exchange Option will be added in the future to allow the player to choose what chip values they want more of!)\n")
+
+    # PICK UP THE CALCULATIONS HERE
+
+
+    
+
+    # displays what chip values the player should now have after the exchange (based on the calculations done above)
+    print("Player should now have: ")
+    if num_yellow_chips > 0:
+        print(f" - {num_yellow_chips} yellow chips")
+    if num_orange_chips > 0:
+        print(f" - {num_orange_chips} orange chips")
+    if num_black_chips > 0:
+        print(f" - {num_black_chips} black chips")
+    if num_green_chips > 0:
+        print(f" - {num_green_chips} green chips")
+    if num_blue_chips > 0:
+        print(f" - {num_blue_chips} blue chips")
+    if num_red_chips > 0:
+        print(f" - {num_red_chips} red chips")
+    if num_white_chips > 0:
+        print(f" - {num_white_chips} white chips")
+
 
 def launch_randompicker():  # launches randompicker (WEB's raffle ticket software) 
     # when launched it will allow the casino staff to enter in the user's name, email, and what they put their raffle tickets towards
