@@ -126,7 +126,6 @@ def chip_exchanger(current_points):  # chip exchanger function (currently under 
     # for example: if the user has 10 green chips (100pts each) they can exchange them for 1 yellow chip (1000pts)
 
     exchange_points = 0     # variable that will hold onto the total points that the player has as well as what the calculations will be based off of for the chip exchanger
-    updated_points = 0      # used in calculations
 
     num_yellow_chips = 0       # variable that will hold onto the total number of yellow chips that the player will get after the exchange
     num_orange_chips = 0       # variable that will hold onto the total number of orange chips that the player will get after the exchange
@@ -142,7 +141,7 @@ def chip_exchanger(current_points):  # chip exchanger function (currently under 
     print(f"Current User's Stored Points Value: {current_points} pts")
     choice = int(input("Enter your choice: "))
 
-    if choice == 1:
+    if choice == 1:     # ** DOES NOT USE PREVIOUSLY STORED VALUE IN MEMORY - FIX THIS ***
         # use previous value
         print("\nUsing previous value stored in the program for the player's current points...\n")
         exchange_points = current_points
@@ -155,30 +154,63 @@ def chip_exchanger(current_points):  # chip exchanger function (currently under 
 
     # calculations/exchange logic for the chip exchanger 
     print(f"\nCalculating the most effective chip exchange for {exchange_points} points...\n")
-    print("NOTE: The program will always try to give the player the highest chip values possible (yellow, orange, black) before giving them lower chip values (green, blue, red, white)\n")
+    print("NOTE: The program will always try to give the player the highest chip values possible (yellow, orange, black) before giving them lower chip values (green, blue, red, white)")
     print("(A Custom Exchange Option will be added in the future to allow the player to choose what chip values they want more of!)\n")
 
-    # PICK UP THE CALCULATIONS HERE
-
-
+    # calculcations to find out how many of each chip the player should get
+    if (exchange_points >= 1000):   # checks to make sure the current value of exchange points >= 1000 (1 yellow chip)
+         num_yellow_chips = int(exchange_points / YELLOW_CHIP)    # dividing exchange_points by the value of a yellow chip and storing it as an int (also used in calculations below)
+         points_to_sub = num_yellow_chips * YELLOW_CHIP      # temporary variable to hold onto how many points need to be subtracted from the player's current points value
+         exchange_points = exchange_points - points_to_sub   # updates the current value in exchange_points by subtracting the current value in it by points_to_sub
     
+    if (exchange_points >= 500):    # checks to make sure the current value of exchange points >= 500 (1 orange chip)
+         num_orange_chips = int(exchange_points / ORANGE_CHIP)
+         points_to_sub = num_orange_chips * ORANGE_CHIP
+         exchange_points = exchange_points - points_to_sub
+        
+    if (exchange_points >= 250):    # checks to make sure the current value of exchange points >= 250 (1 black chip)
+         num_black_chips = int(exchange_points / BLACK_CHIP)
+         points_to_sub = num_black_chips * BLACK_CHIP
+         exchange_points = exchange_points - points_to_sub
+
+    if (exchange_points >= 100):    # checks to make sure the current value of exchange points >= 100 (1 green chip)
+         num_green_chips = int(exchange_points / GREEN_CHIP)
+         points_to_sub = num_green_chips * GREEN_CHIP
+         exchange_points = exchange_points - points_to_sub
+
+    if (exchange_points >= 50):     # checks to make sure the current value of exchange points >= 50 (1 blue chip)
+         num_blue_chips = int(exchange_points / BLUE_CHIP)
+         points_to_sub = num_blue_chips * BLUE_CHIP
+         exchange_points = exchange_points - points_to_sub
+
+    if (exchange_points >= 25):     # checks to make sure the current value of exchange points >= 25 (1 red chip)
+         num_red_chips = int(exchange_points / RED_CHIP)
+         points_to_sub = num_red_chips * RED_CHIP
+         exchange_points = exchange_points - points_to_sub
+         
+    if (exchange_points >= 10):     # checks to make sure the current value of exchange points >= 10 (1 white chip)
+         num_white_chips = int(exchange_points / WHITE_CHIP)
+         points_to_sub = num_white_chips * WHITE_CHIP
+         exchange_points = exchange_points - points_to_sub
+
 
     # displays what chip values the player should now have after the exchange (based on the calculations done above)
-    print("Player should now have: ")
+    print("\nPlayer should now have: \n")
     if num_yellow_chips > 0:
-        print(f" - {num_yellow_chips} yellow chips")
+        print(Fore.LIGHTYELLOW_EX + f" - {num_yellow_chips} yellow chips")
     if num_orange_chips > 0:
-        print(f" - {num_orange_chips} orange chips")
+        print(Fore.YELLOW + f" - {num_orange_chips} orange chips")
     if num_black_chips > 0:
-        print(f" - {num_black_chips} black chips")
+        print(Fore.BLACK + Style.BRIGHT + f" - {num_black_chips} black chips")
     if num_green_chips > 0:
-        print(f" - {num_green_chips} green chips")
+        print(Fore.GREEN + f" - {num_green_chips} green chips")
     if num_blue_chips > 0:
-        print(f" - {num_blue_chips} blue chips")
+        print(Fore.BLUE + f" - {num_blue_chips} blue chips")
     if num_red_chips > 0:
-        print(f" - {num_red_chips} red chips")
+        print(Fore.RED + f" - {num_red_chips} red chips")
     if num_white_chips > 0:
-        print(f" - {num_white_chips} white chips")
+        print(Fore.WHITE + f" - {num_white_chips} white chips")
+    print("\n")
 
 
 def launch_randompicker():  # launches randompicker (WEB's raffle ticket software) 

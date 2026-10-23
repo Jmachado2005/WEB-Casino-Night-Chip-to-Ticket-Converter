@@ -1,7 +1,7 @@
 # Wentworth Events Board Casino Assistant Tool (WEB-CAT)
 # Program By Joe Machado
 
-from functions import *  # imports all functions from the functions.py file
+from functions import * # imports all functions from the functions.py file
 
 # ********** MAIN CODE **********
 
@@ -19,7 +19,7 @@ while (exit != 0):
     print("2. View Help/Instructions")
     print("3. View Legal Information")
     print("4. View Program Information")
-    print("5. [COMING SOON!] Chip Exchanger")
+    print("5. Chip Exchanger")
     print("6. Launch RandomPicker (Raffle Ticket Software)")
     print("0. Exit the program")
     choice = int(input("Enter your Choice: "))
@@ -45,7 +45,7 @@ while (exit != 0):
         display_program_info()
 
     elif choice == 5: # chip exchanger
-       chip_exchanger()
+       chip_exchanger(current_points)
 
     elif choice == 6: # launches RandomPicker
         launch_randompicker()
